@@ -1,5 +1,5 @@
 # Redirect root to landing page
-/  /landing-page.html  200
+/    /landing-page.html   200
 
 # Redirect app routes to React app
 /app/*  /index.html  200
