@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe Editor AI</title>
+  <script src="https://js.stripe.com/v3/" defer></script>
+  <script type="module" crossorigin src="/assets/main-Cwc2CvuJ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-ME3sZN-e.css">
+</head>
+<body>
+  <!-- Connection Status -->
+  <div id="connection-status" class="connection-status" aria-live="polite" hidden>Connected</div>
+
+  <div class="card">
+    <form id="edit-form" aria-label="Video editing form">
+      
+      <!-- Drag & Drop Upload -->
+      <div id="drop-zone" class="drop-zone" tabindex="0" aria-label="Drop video file here or click to browse">
+        <p><strong>Drag & drop your video</strong> or <span class="browse-btn" role="button" tabindex="0">browse</span></p>
+        <input type="file" id="video" name="file" accept=".mp4,.mkv,.avi,.mov" required hidden />
+      </div>
+
+      <!-- Optional Music -->
+      <label for="music">Optional background music:</label>
+      <input type="file" id="music" name="music" accept=".mp3,.wav,.m4a" />
+
+      <!-- Prompt Selection -->
+      <label for="prompt-select">Quick prompt:</label>
+      <select id="prompt-select">
+        <option value="">-- Choose a suggestion --</option>
+        <option value="trim to 5s">Trim to 5 seconds</option>
+        <option value="slowmo">Add slow motion</option>
+        <option value="subtitles">Add subtitles</option>
+        <option value="vhs">Apply VHS filter</option>
+        <option value="cut to the beat">Cut to the beat</option>
+        <option value="fade in">Fade in</option>
+        <option value="fade out">Fade out</option>
+        <option value="zoom">Add zoom effect</option>
+        <option value="crop 1280x720+0+0">Crop to 1280x720</option>
+      </select>
+
+      <!-- Custom Prompt -->
+      <div class="prompt-section">
+        <label for="prompt">Or write your own:</label>
+        <input type="text" id="prompt" name="prompt" placeholder="e.g. trim to 5s, vhs, subtitles" required aria-label="Custom prompt input" autocomplete="off" />
+        <ul id="prompt-suggestions" class="suggestions-list" aria-live="polite"></ul>
+      </div>
+
+      <button type="submit">Edit Video</button>
+    </form>
+
+    <!-- Upload Result -->
+    <div id="response" aria-live="polite"></div>
+    <div id="progress-message"></div>
+    <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill"></div>
+    </div>
+
+    <!-- Video Preview -->
+    <div id="video-preview" hidden>
+      <h3>Preview</h3>
+      <div class="side-by-side-preview">
+        <div>
+          <h4>Original</h4>
+          <video id="original-player" controls></video>
+        </div>
+        <div>
+          <h4>Edited</h4>
+          <video id="preview-player" controls></video>
+        </div>
+      </div>
+      <button onclick="reEdit()">🔄 Re-edit</button>
+    </div>
+
+    <!-- Stripe Payment -->
+    <div id="payment-section" hidden>
+      <h3>Complete Payment ($49.99)</h3>
+      <div id="card-element"></div>
+      <button id="pay-button" data-price-id="price_1RdBBDBlupvf8JxwGStB88zp">Pay & Download</button>
+    </div>
+
+    <!-- Subtitle Editor Notice -->
+    <div id="subtitle-editor">
+      <h4>📝 Subtitle Editor (Coming Soon)</h4>
+      <p>Here you’ll be able to drag, edit, and sync subtitles manually.</p>
+    </div>
+
+    <!-- Help Modal -->
+    <button aria-label="Open help modal" onclick="document.getElementById('help-modal').style.display='block'">Help</button>
+    <div id="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title" hidden>
+      <h2 id="help-title">Prompt Examples</h2>
+      <ul>
+        <li>"trim to 10s"</li>
+        <li>"add subtitles"</li>
+        <li>"fade in, fade out"</li>
+        <li>"zoom and crop to 9:16"</li>
+        <li>"cut on silence"</li>
+      </ul>
+      <button aria-label="Close help modal" onclick="document.getElementById('help-modal').style.display='none'">Close</button>
+    </div>
+  </div>
+</body>
+</html>

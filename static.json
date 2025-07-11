@@ -1,0 +1,7 @@
+{
+  "headers": {
+    "/**": {
+      "Content-Security-Policy": "script-src 'self' https://js.stripe.com 'sha256-FkIRfuYIlWaO/HCapFX4LMO5b6xWIafOW3qI5ddrYjI=' 'sha256-5DA+a07wxWmEka9IdoWjSPVHb17Cp5284/lJzfbl8KA=' 'sha256-/5Guo2nzv5n/w6ukZpOBZOtTJBJPSkJ6mhHpnBgm3Ls='; object-src 'none'"
+    }
+  }
+}
