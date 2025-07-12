@@ -1,8 +1,0 @@
-# Redirect root to landing page
-/    /landing-page.html   200
-
-# Redirect app routes to React app
-/app/*  /index.html  200
-
-# API routes - you'll need to implement these as Netlify Functions if needed
-/api/*  /api-placeholder.html  404

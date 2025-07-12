@@ -1,11 +1,11 @@
 [build]
-  # Build command for Vite
+  # Build command for Vitehttps://github.com/jpwiggins/vibeeditor-frontend/blob/main/netlify.toml
   command = "npm run build"
   # Output directory where Vite builds to
-  publish = "build"
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20.19.0"
 
 # Redirect all routes to index.html for SPA behavior
 [[redirects]]
