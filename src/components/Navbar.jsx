@@ -5,394 +5,65 @@ function Navbar({ onSignIn }) {
   const { user, logout } = useAuth();
 
   return (
-    <nav style={{
-      background: 'white',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-      padding: '1rem 0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          color: '#3b82f6'
-        }}>
-          🎬 VibeEditor
+    <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <div className="text-2xl font-bold text-blue-600 flex items-center gap-2">
+              <span className="text-3xl">🎬</span>
+              <span>VibeEditorAI</span>
+            </div>
+          </div>
+
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className="text-gray-600">
+                Welcome, {user.username}!
+              </span>
+              <button
+                onClick={logout}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200"
+              >
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Navigation Links */}
+              <div className="hidden md:flex items-center space-x-8">
+                <a 
+                  href="#features" 
+                  className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200"
+                >
+                  Features
+                </a>
+                <a 
+                  href="#pricing" 
+                  className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-200"
+                >
+                  Pricing
+                </a>
+                <button 
+                  onClick={onSignIn}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-200 shadow-sm hover:shadow-md"
+                >
+                  Login
+                </button>
+              </div>
+
+              {/* Mobile menu button */}
+              <div className="md:hidden">
+                <button 
+                  onClick={onSignIn}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-sm"
+                >
+                  Login
+                </button>
+              </div>
+            </>
+          )}
         </div>
-        
-        {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ color: '#64748b' }}>
-              Welcome, {user.username}!
-            </span>
-            <button
-              onClick={logout}
-              style={{
-                background: '#ef4444',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.5rem 1rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Sign Out
-            </button>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="#features" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Features
-            </a>
-            <a href="#pricing" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Pricing
-            </a>
-            <button
-              onClick={onSignIn}
-              style={{
-                background: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Get Started
-            </button>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-}
-
-export default Navbar;import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-
-function Navbar({ onSignIn }) {
-  const { user, logout } = useAuth();
-
-  return (
-    <nav style={{
-      background: 'white',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-      padding: '1rem 0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          color: '#3b82f6'
-        }}>
-          🎬 VibeEditor
-        </div>
-        
-        {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ color: '#64748b' }}>
-              Welcome, {user.username}!
-            </span>
-            <button
-              onClick={logout}
-              style={{
-                background: '#ef4444',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.5rem 1rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Sign Out
-            </button>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="#features" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Features
-            </a>
-            <a href="#pricing" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Pricing
-            </a>
-            <button
-              onClick={onSignIn}
-              style={{
-                background: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Get Started
-            </button>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-}
-
-export default Navbar;import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-
-function Navbar({ onSignIn }) {
-  const { user, logout } = useAuth();
-
-  return (
-    <nav style={{
-      background: 'white',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-      padding: '1rem 0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          color: '#3b82f6'
-        }}>
-          🎬 VibeEditor
-        </div>
-        
-        {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ color: '#64748b' }}>
-              Welcome, {user.username}!
-            </span>
-            <button
-              onClick={logout}
-              style={{
-                background: '#ef4444',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.5rem 1rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Sign Out
-            </button>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="#features" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Features
-            </a>
-            <a href="#pricing" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Pricing
-            </a>
-            <button
-              onClick={onSignIn}
-              style={{
-                background: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Get Started
-            </button>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-}
-
-export default Navbar;import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-
-function Navbar({ onSignIn }) {
-  const { user, logout } = useAuth();
-
-  return (
-    <nav style={{
-      background: 'white',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-      padding: '1rem 0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          color: '#3b82f6'
-        }}>
-          🎬 VibeEditor
-        </div>
-        
-        {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ color: '#64748b' }}>
-              Welcome, {user.username}!
-            </span>
-            <button
-              onClick={logout}
-              style={{
-                background: '#ef4444',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.5rem 1rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Sign Out
-            </button>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="#features" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Features
-            </a>
-            <a href="#pricing" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Pricing
-            </a>
-            <button
-              onClick={onSignIn}
-              style={{
-                background: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Get Started
-            </button>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-}
-
-export default Navbar;import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-
-function Navbar({ onSignIn }) {
-  const { user, logout } = useAuth();
-
-  return (
-    <nav style={{
-      background: 'white',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
-      padding: '1rem 0',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          color: '#3b82f6'
-        }}>
-          🎬 VibeEditor
-        </div>
-        
-        {user ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ color: '#64748b' }}>
-              Welcome, {user.username}!
-            </span>
-            <button
-              onClick={logout}
-              style={{
-                background: '#ef4444',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.5rem 1rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Sign Out
-            </button>
-          </div>
-        ) : (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="#features" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Features
-            </a>
-            <a href="#pricing" style={{ textDecoration: 'none', color: '#64748b', fontWeight: '500' }}>
-              Pricing
-            </a>
-            <button
-              onClick={onSignIn}
-              style={{
-                background: '#3b82f6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                fontWeight: '600',
-                cursor: 'pointer'
-              }}
-            >
-              Get Started
-            </button>
-          </div>
-        )}
       </div>
     </nav>
   );

@@ -26,7 +26,7 @@ const uploadAreaStyles = {
 };
 
 function Dashboard() {
-  const { user, logout } = useAuth();
+  const { user, logout, clearAllData } = useAuth();
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedAudio, setSelectedAudio] = useState(null);
   const [prompt, setPrompt] = useState('');
@@ -68,7 +68,7 @@ function Dashboard() {
       formData.append('prompt', prompt);
 
       // Upload to your backend API
-      const uploadUrl = 'https://vibe-editor.onrender.com/api/v1/upload';
+      const uploadUrl = "https://web-synce-environment.up.railway.app/api/v1/upload";
       const response = await fetch(uploadUrl, {
         method: 'POST',
         body: formData,
@@ -91,7 +91,7 @@ function Dashboard() {
   };
 
   const pollTaskStatus = async (taskId) => {
-    const statusUrl = `https://vibe-editor.onrender.com/api/v1/tasks/${taskId}`;
+    const statusUrl = `https://web-synce-environment.up.railway.app/api/v1/tasks/${taskId}`;
     
     const pollInterval = setInterval(async () => {
       try {
@@ -111,7 +111,7 @@ function Dashboard() {
             break;
           case 'SUCCESS':
             clearInterval(pollInterval);
-            const videoUrl = `https://vibe-editor.onrender.com/${task.result}`;
+            const videoUrl = `https://web-synce-environment.up.railway.app/${task.result}`;
             const newProcessedVideo = {
               id: taskId,
               originalName: selectedVideo.name,
@@ -121,7 +121,7 @@ function Dashboard() {
               createdAt: new Date().toLocaleString()
             };
             
-            setProcessedVideos([...processedVideos, newProcessedVideo]);
+            setProcessedVideos(prevVideos => [...prevVideos, newProcessedVideo]);
             setProcessing(false);
             setSelectedVideo(null);
             setSelectedAudio(null);
@@ -153,9 +153,18 @@ function Dashboard() {
           <h1 style={{ color: '#3b82f6', margin: 0 }}>🎬 VibeEditor Dashboard</h1>
           <p style={{ margin: '0.5rem 0 0 0', color: '#64748b' }}>Welcome back, {user?.username}!</p>
         </div>
-        <button onClick={logout} style={{ ...buttonStyles, background: '#ef4444' }}>
-          Sign Out
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button onClick={logout} style={{ ...buttonStyles, background: '#ef4444' }}>
+            Sign Out
+          </button>
+          <button 
+            onClick={clearAllData} 
+            style={{ ...buttonStyles, background: '#f59e0b', fontSize: '12px', padding: '6px 12px' }}
+            title="Reset to landing page (dev helper)"
+          >
+            🔄 Reset
+          </button>
+        </div>
       </div>
 
       {/* Upload Section */}
@@ -188,6 +197,23 @@ function Dashboard() {
                 )}
               </label>
             </div>
+            
+            {/* Video Preview */}
+            {selectedVideo && (
+              <div style={{ marginTop: '1rem' }}>
+                <h4 style={{ marginBottom: '0.5rem', color: '#374151' }}>Preview</h4>
+                <video
+                  controls
+                  style={{
+                    width: '100%',
+                    maxHeight: '200px',
+                    borderRadius: '8px',
+                    border: '1px solid #d1d5db'
+                  }}
+                  src={URL.createObjectURL(selectedVideo)}
+                />
+              </div>
+            )}
           </div>
 
           {/* Audio Upload (Optional) */}

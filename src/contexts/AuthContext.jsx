@@ -11,7 +11,10 @@ export function AuthProvider({ children }) {
     const savedUser = localStorage.getItem('vibeEditorUser');
     if (savedUser) {
       try {
-        setUser(JSON.parse(savedUser));
+        const userData = JSON.parse(savedUser);
+        // Optional: Add session expiry check here
+        // For now, we'll always restore the session
+        setUser(userData);
       } catch (error) {
         console.error('Error parsing saved user:', error);
         localStorage.removeItem('vibeEditorUser');
@@ -37,10 +40,16 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('vibeEditorUser');
   };
 
+  const clearAllData = () => {
+    setUser(null);
+    localStorage.clear();
+  };
+
   const value = {
     user,
     login,
     logout,
+    clearAllData,
     loading
   };
 

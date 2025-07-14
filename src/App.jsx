@@ -39,18 +39,13 @@ function AppContent() {
     );
   }
 
-  // If showing auth page
-  if (showAuth) {
-    return <AuthPage />;
-  }
-
-  // Show landing page by default
+  // Show landing page or auth page
   return (
     <Router>
       <Routes>
         <Route 
-          path="/" 
-          element={<LandingPage onSignIn={() => setShowAuth(true)} />} 
+          path="/"
+          element={showAuth ? <AuthPage /> : <LandingPage onSignIn={() => setShowAuth(true)} />} 
         />
         <Route 
           path="/auth" 
