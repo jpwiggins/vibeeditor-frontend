@@ -89,7 +89,7 @@ function PricingSection() {
               </ul>
 
               <button
-                onClick={() => handleSubscribe('price_1RdBBDBlupvf8JxwGStB88zp')}
+                onClick={() => handleSubscribe('price_monthly_plan_id')}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               >
                 Subscribe Monthly
@@ -150,7 +150,7 @@ function PricingSection() {
               </ul>
 
               <button
-                onClick={() => handleSubscribe('price_1RdBBDBlupvf8JxwGStB88zp')}
+                onClick={() => handleSubscribe('price_yearly_plan_id')}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
               >
                 Subscribe Yearly

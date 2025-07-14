@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { loadStripe } from '@stripe/stripe-js';
 
-// Initialize Stripe (replace with your publishable key)
-const stripePromise = loadStripe('pk_test_your_stripe_publishable_key_here');
+// Initialize Stripe
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || 'pk_test_51RdB9VBlupvf8JxwGStB88zp_test_key_here');
 
 const formStyles = {
   display: 'flex',
