@@ -30,7 +30,7 @@ function AppContent() {
   // If user is authenticated, show dashboard
   if (user) {
     return (
-      <Router>
+      <Router basename="/vibeeditor-frontend">
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
@@ -41,7 +41,7 @@ function AppContent() {
 
   // Show landing page or auth page
   return (
-    <Router>
+    <Router basename="/vibeeditor-frontend">
       <Routes>
         <Route 
           path="/"
